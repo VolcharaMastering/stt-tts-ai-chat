@@ -1,0 +1,12 @@
+services:
+    voice-chat-mongodb:
+        image: mongo:7.0.2
+        container_name: voice-chat
+        env_file:
+            - .env
+        volumes:
+            - ../data/mongo:/data/db
+            - ./dumps:/dumps
+        ports:
+            - "27017:27017"
+    

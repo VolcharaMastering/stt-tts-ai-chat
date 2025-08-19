@@ -1,0 +1,55 @@
+{
+    "ru": {
+        "usersValidation": {
+            "emailRequired": "Email обязателен",
+            "passwordRequired": "Пароль обязателен",
+            "nameRequired": "Имя обязательно",
+            "roleRequired": "Роль обязательна",
+            "checkEmail": "Проверьте правильность email",
+            "nameLength": "Не более 120 символов",
+            "passwordLengthMin": "Не менее 8 символов",
+            "passwordLengthMax": "Не более 20 символов",
+            "projectMinLength": "Не менее 2 символов",
+            "projectMaxLength": "Не более 20 символов",
+            "projectNamePattern": "Только латинские буквы, цифры, #, -, _",
+            "projectDescriptionMaxLength": "Не более 1500 символов",
+            "descriptionIncludes": "Использование недопустимых символов",
+            "passwordIncludes": "Пароль: минимум одна цифра и латинские буквы в разных регистрах"
+        },
+        "branchValidation": {
+            "projectRequired": "Выберите проект",
+            "nameRequired": "Имя обязательно",
+            "branchMinLength": "Не менее 2 символов",
+            "branchMaxLength": "Не более 30 символов",
+            "branchDescriptionMaxLength": "Не более 1500 символов",
+            "descriptionIncludes": "Использование недопустимых символов",
+            "destinyRequired": "Назначение ветки обязательно",
+            "nameIncludes": "Использование недопустимых символов",
+            "branchNamePattern": "Только латинские буквы, цифры, #, -, _"
+        },
+        "scriptValidation": {
+            "nameRequired": "Имя обязательно",
+            "minLength": "Не менее 2 символов",
+            "maxLength": "Не более 30 символов",
+            "max1500Length": "Описание не более 1500 символов",
+            "namePattern": "Только латинские буквы, цифры, #, -, . , _",
+            "descriptionIncludes": "Использование недопустимых символов",
+            "fileNameExists": "Файл с таким именем уже существует"
+        },
+        "apkValidation": {
+            "nameRequired": "Имя обязательно",
+            "apkMinLength": "Не менее 3 символов",
+            "apkMaxLength": "Не более 100 символов",
+            "apkVersionMinLength": "Не менее 5 символов",
+            "apkVersionMaxLength": "Не более 14 символов",
+            "versionFormat": "Формат версии: x.x.x",
+            "versionRequired": "Версия обязательна",
+            "apkDescriptionMaxLength": "Описание не более 1500 символов",
+            "descriptionIncludes": "Использование недопустимых символов",
+            "projectRequired": "Выберите проект",
+            "branchRequired": "Выберите ветку",
+            "descriptionRequired": "Описание обязательно",
+            "dateRequired": "Дата обязательна"
+        }
+    }
+}
