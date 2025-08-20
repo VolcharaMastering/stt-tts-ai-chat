@@ -1,6 +1,7 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IUserChat extends Document {
+  _id: string;
   userName: string;
   textMessage: string;
   linkToAudio: string;
