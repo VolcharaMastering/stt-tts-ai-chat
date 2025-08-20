@@ -28,7 +28,6 @@ function buildMongoUri(url: string, user?: string, password?: string) {
 async function dbConnect() {
     // Check if the connection is already established
     const mongoUri = buildMongoUri(MONGO_URL, MONGO_USER, MONGO_PASSWORD);
-
     try {
         // await mongoose.connect(mongoUri);
         await mongoose.connect(mongoUri, {
