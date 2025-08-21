@@ -1,0 +1,48 @@
+@import "./consts.scss";
+
+// -------fonts decoration----
+@mixin font-style(
+    $font-family: $main-font-family,
+    $font-size: 18px,
+    $font-weight: 400,
+    $line-height: 1.24,
+    $font-style: normal,
+    $color: $text-color
+) {
+    font-family: $font-family;
+    font-size: $font-size;
+    font-style: $font-style;
+    font-weight: $font-weight;
+    color: $color;
+}
+
+@mixin title-text($text-color: $dark-text-color) {
+    @include font-style($font-size: 30px, $font-family: $main-font-family, $color: $h1-color);
+    font-weight: 700;
+    font-stretch: 50%;
+}
+
+
+@mixin labels-text($text-color: $text-color) {
+    @include font-style($font-size: 16px, $font-family: $main-font-family, $color: $text-color);
+    font-weight: 700;
+}
+@mixin input-text($text-color: $dark-text-color) {
+    @include font-style($color: $text-color, $font-family: $main-font-family, $font-size: 16px);
+}
+@mixin text($text-color: $text-color, $font-size: 16px) {
+    @include font-style(
+        $font-size: $font-size,
+        $color: $text-color,
+        $font-family: $main-font-family
+    );
+}
+
+@mixin button-text($text-color: $button-text-color, $font-size: 25px) {
+    @include font-style(
+        $color: $text-color,
+        $font-family: $main-font-family,
+        $font-size: 20px,
+        $font-weight: 700
+    );
+}

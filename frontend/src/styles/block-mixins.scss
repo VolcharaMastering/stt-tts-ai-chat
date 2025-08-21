@@ -1,0 +1,100 @@
+@import "./consts.scss";
+@import "./text-mixins.scss";
+
+// ------mixins for blocks
+@mixin flex_row($align: center, $justify: space-between, $gap: 0) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    gap: $gap;
+}
+
+@mixin flex_column($align: center, $justify: space-between, $gap: 0) {
+    display: flex;
+    flex-direction: column;
+    align-items: $align;
+    justify-content: $justify;
+    gap: $gap;
+}
+
+@mixin gridAutoFill(
+    $place-items: flex-start center,
+    $justify: space-between,
+    $columns-number: "auto-fit",
+    $min-width: 300px,
+    $max-width: 1fr,
+    $gap: 10px
+) {
+    display: grid;
+    width: 100%;
+    box-sizing: border-box;
+    grid-template-columns: repeat($columns-number, minmax($min-width, $max-width));
+    justify-content: $justify;
+    place-items: $place-items;
+    gap: $gap;
+}
+@mixin button() {
+    border-radius: 10px;
+    @include font-style($font-size: 14px);
+    width: 210px;
+    height: 55px;
+    background-color: $button-color;
+    color: $button-text-color;
+    border: none;
+    transition: $transition;
+}
+
+@mixin table-cell(
+    $width: 100%,
+    $height: 40px,
+    $align: center,
+    $justify: space-between,
+    $padding: 0 5%,
+    $border-bottom: $borders-default
+) {
+    @include flex_row($align: $align, $justify: $justify);
+    width: $width;
+    height: $height;
+    padding: $padding;
+    border-bottom: $border-bottom;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+@mixin form-element-parent($max-width: 400px, $width: 100%, $height: fit-content) {
+    position: relative;
+    @include flex_column();
+    max-width: $max-width;
+    width: $width;
+    height: $height;
+}
+@mixin form-element-label() {
+    width: 100%;
+    @include labels-text();
+    margin: 30px 0 5px 0;
+}
+@mixin form-element-error-message() {
+    position: absolute;
+    left: 5px;
+    bottom: -20px;
+    @include flex_row($gap: 2px);
+}
+
+// ------special block decoration
+@mixin list-without-dots {
+    @include flex_row();
+    list-style-type: none;
+}
+@mixin table-section(
+    $width: 100%,
+    $height: fit-content,
+    $justify: center,
+    $align: center,
+    $gap: 0
+) {
+    @include flex_column($align, $justify, $gap);
+    @include default-border();
+    width: $width;
+    height: $height;
+}

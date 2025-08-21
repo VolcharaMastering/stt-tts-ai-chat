@@ -1,0 +1,26 @@
+//consts for fonts
+$main-font-family: Arial, sans-serif;
+
+// consts colors for app
+$light-background-color: #e3e3e3;
+$button-color: #3498db;
+$button-hover-color: #2980b9;
+$button-text-color: #ffffff;
+$h1-color: #2c3e50;
+$tooltip-background-color: #34495e;
+$tooltip-text-color: #ecf0f1;
+$text-color: #2c3e50;
+$dark-text-color: #000;
+$popup-background-color: #ffffff;
+$popup-border-color: #e74c3c;
+$popup-text-color: #2c3e50;
+$error-color: #e74c3c;
+
+$separator-color: #bdc3c7;
+
+// default animation
+$transition: all 0.2s ease-in;
+$transition-opacity: opacity 0.3s linear;
+$transition-value:
+    opacity 0.2s linear,
+    text-shadow 0.3s linear;

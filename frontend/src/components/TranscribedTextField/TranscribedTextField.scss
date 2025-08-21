@@ -1,0 +1,29 @@
+@import "../../styles/block-mixins.scss";
+
+.all-chats {
+    @include flex_column();
+    width: 50%;
+    height: 100%;
+    border-right: 2px solid $separator-color;
+
+    .all-chats__button {
+        @include button();
+    }
+    .all-chats__list {
+        @include flex_column($justify: flex-start);
+        width: 100%;
+        padding: 20px 20px;
+        flex: 1;
+        .all-chats__item {
+            width: 100%;
+            @include flex_row($justify: space-between);
+            @include text();
+            .all-chats__alias {
+                @include text();
+            }
+        }
+    }
+    .all-chats__empty {
+        @include labels-text();
+    }
+}

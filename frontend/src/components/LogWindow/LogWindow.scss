@@ -1,0 +1,13 @@
+@import "../../styles/block-mixins.scss";
+
+.log-window {
+    @include flex-column();
+    width: 50%;
+    .log-window__text {
+        @include text();
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        padding: 20px;
+    }
+}

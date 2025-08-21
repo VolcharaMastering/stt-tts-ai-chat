@@ -1,0 +1,53 @@
+@import "../../styles/block-mixins.scss";
+
+.input-element {
+    @include flex_column($align: center);
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    .input-element__label {
+        width: 100%;
+        max-width: 400px;
+        @include labels-text();
+        margin: 20px 0;
+    }
+    .input-element__input {
+        @include input-text();
+        width: 100%;
+        max-width: 400px;
+        height: 40px;
+        margin: 0;
+        border-radius: 10px;
+        padding: 0 10px;
+        &.checkbox__input {
+            width: 20px;
+            height: 20px;
+        }
+        &.small {
+            width: 100px;
+        }
+        &.custom-width {
+            width: var(--input-width);
+        }
+    }
+    .input-element__error-message {
+        position: absolute;
+        left: 5px;
+        bottom: -30px;
+        @include flex_row($gap: 2px, $align: flex-start, $justify: flex-start);
+        height: 25px;
+        font-size: 10px;
+        color: $error-color;
+        .input-element__error-message_icon {
+            width: 15px;
+            height: 15px;
+            margin-right: 10px;
+            background-image: url(../../assets/error.svg);
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+    }
+}
+.checkbox {
+    @include flex_row($gap: 10px);
+}

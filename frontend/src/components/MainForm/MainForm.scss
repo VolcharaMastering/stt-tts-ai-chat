@@ -1,0 +1,39 @@
+@import "../../styles/block-mixins.scss";
+
+.main-form {
+    @include flex_column();
+    width: 350px;
+    .main-form__inputs {
+        flex: 1;
+        @include flex_column($justify: flex-start);
+        min-width: 230px;
+        max-width: 350px;
+        width: 100%;
+    }
+
+    .main-form__calendar {
+        @include input-text();
+        width: 100%;
+        border-radius: 10px;
+    }
+    .main-form__buttons {
+        width: 100%;
+        @include flex_row($justify: space-around);
+        padding: 2% 10% 0;
+    }
+    .main-form__hidden-input {
+        display: none;
+    }
+    .main-form__button {
+        @include button();
+        margin: 20px 0;
+        &.disabled {
+            opacity: 0.5;
+            background-color: gray;
+            cursor: not-allowed;
+        }
+        &:not(.disabled):hover {
+            background-color: $button-hover-color;
+        }
+    }
+}
