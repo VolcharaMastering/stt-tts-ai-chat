@@ -22,6 +22,6 @@ yarn-error.log*
 .vscode
 /dumps
 /uploads
-
+tts-service-account.json
 
 .env

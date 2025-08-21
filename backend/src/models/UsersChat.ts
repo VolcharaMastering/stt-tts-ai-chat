@@ -40,4 +40,3 @@ const userChatSchema = new Schema({
 });
 
 export default mongoose.model<IUserChat>('UserChat', userChatSchema);
-

@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@google-cloud/text-to-speech": "^6.2.0",
     "assemblyai": "^4.15.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",

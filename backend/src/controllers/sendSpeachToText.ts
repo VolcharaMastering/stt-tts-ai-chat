@@ -1,37 +1,54 @@
-import fs from "fs";
-import { notFound, requestError } from "../errors/errors";
-import { assemblyai } from "../config/assemblyAi";
+import { Request, Response, NextFunction } from 'express';
+import UsersChat, { IUserChat } from '../models/UsersChat';
+import { notFound, serverError } from '../errors/errors';
+import fs from 'fs';
 
-import { Request, Response, NextFunction } from "express";
-import UsersChat, { IUserChat } from "../models/UsersChat";
-import { getGptResponse } from "../services/aiService";
+import { transcribeAudio } from '../services/sttService';
+import { getGptResponse } from '../services/aiService';
 
 interface MulterRequest extends Request {
   file?: Express.Multer.File;
 }
 
 export const sendSpeachToText = async (req: MulterRequest, res: Response, next: NextFunction) => {
-    try {
-    if (!req.file) return notFound("Файл не найден");
+  try {
+    if (!req.file) return notFound('File not found');
 
-    const { userName } = req.body;
-    const transcript = await assemblyai.transcripts.transcribe({
-      audio: fs.createReadStream(req.file.path),
-    });
+    const { userName, voiceAnswer = false } = req.body;
 
-    if(!transcript.text){
-      requestError("Транскрипция не удалась");
-    }
+    // 1. Recognize audio
+    const originalPath = req.file.path;
+    const newPath = `${originalPath}.mp3`;
+
+    fs.renameSync(originalPath, newPath);
+
+    const transcriptText = await transcribeAudio(newPath);
+    // 2. Save user message
     const transcriptedMessage: IUserChat = await new UsersChat({
-      userName: userName,
-      textMessage: transcript.text,
-      linkToAudio: req.file.path,
+      userName,
+      textMessage: transcriptText,
+      linkToAudio: newPath,
     }).save();
 
-    const aiText = await getGptResponse(transcript.text ?? "", transcriptedMessage._id.toString());
-    res.json({ text: transcript.text, aiText });
-  } catch (err: Error | any) {
-    console.error(err);
-    res.status(500).json({ error: `Ошибка транскрипции ${err.error.message}` });
+    if (!transcriptedMessage || !transcriptedMessage._id || !transcriptText) {
+      return notFound('Failed to save transcripted message');
+    }
+    //send response with transcripted text
+    res.json({ text: transcriptText });
+    // 3. GPT response
+    const aiAnswer = await getGptResponse(transcriptText, transcriptedMessage._id, voiceAnswer);
+
+    if (voiceAnswer && aiAnswer.audioPath) {
+      const audioBuffer = await fs.promises.readFile(aiAnswer.audioPath);
+      return res.set('Content-Type', 'audio/mpeg').set('Content-Disposition', 'attachment; filename="answer.mp3"').send(audioBuffer);
+    }
+
+    // 4. JSON
+    return res.json({ text: transcriptText, aiText: aiAnswer.text });
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      serverError(`Error processing: ${err.message}`);
+    }
+    serverError('Unknown error processing speech to text');
   }
-}
+};

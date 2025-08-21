@@ -1,6 +1,6 @@
 // import { Request, Response, NextFunction } from 'express';
-import Joi from "joi";
-import { expressTypes } from "./types";
+import Joi from 'joi';
+import { expressTypes } from './types';
 
 export const validateMessage: expressTypes = (req, res, next) => {
   const schema = Joi.object({
