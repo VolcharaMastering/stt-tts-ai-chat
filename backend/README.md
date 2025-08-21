@@ -23,3 +23,75 @@ Start the backend using Docker Compose:
 ```bash
 docker-compose up -d
 ```
+
+### 2. Environment Variables
+
+Copy or rename `.env.example` → `.env` and fill in your API keys.
+
+### 3. Google Cloud TTS Setup
+
+- Go to [Google Cloud Console](https://console.cloud.google.com/)
+- Create a service account key for **Text-to-Speech**
+- Download the JSON credentials file
+- Save it in the **/backend** root directory as:
+  ```
+  tts-servise-account.json
+  ```
+
+### 4. AI API Keys
+
+Add your API keys (e.g., OpenAI, AssemblyAI) into `.env`.
+
+---
+
+## 🔄 API Workflow
+
+### 📝 Text Message
+
+1. User sends plain text.
+2. API saves it to the database.
+
+### 🎤 Voice Message
+
+1. User sends an audio message.
+2. Backend transcribes it to **text** via AssemblyAI (English only).
+3. Text is sent to **GPT-4o**, which generates an answer.
+4. Response is returned to the user (text only).
+
+### 🎤 Voice Message + "Voice Answer" Flag
+
+1. User sends an audio message with **voice answer enabled**.
+2. Backend transcribes it to **text** via AssemblyAI.
+3. Text is sent to **GPT-4o**, which generates an answer.
+4. Answer is processed by **Google Cloud TTS**.
+5. API returns **both the text and an MP3 audio file**.
+
+---
+
+## 📂 Project Structure
+
+```
+/backend
+ ├── docker-compose.yml
+ ├── .env.example
+ ├── tts-servise-account.json   # Google TTS credentials (not committed)
+ ├── src/                       # Backend source code
+ └── ...
+```
+
+---
+
+## ⚠️ Notes
+
+- **AssemblyAI** currently provides reliable results only for **English**. Other languages may not be recognized correctly.
+- The project is designed for **chat-like workflows** with optional **voice interaction**.
+
+---
+
+## ✅ Tech Stack
+
+- **Node.js / Express** – API backend
+- **AssemblyAI** – Speech-to-Text
+- **OpenAI GPT-4o** – AI responses
+- **Google Cloud TTS** – Text-to-Speech
+- **Docker & Docker Compose** – Containerized setup
