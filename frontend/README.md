@@ -1,69 +1,60 @@
-# React + TypeScript + Vite
+# 🎨 Frontend for STT/TTS AI Chat
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend for **speech-to-text (STT)** and **text-to-speech (TTS)** chat with AI answers.  
+Built with **React + TypeScript + Vite**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+-   💬 Send **text requests** directly to the backend.
+-   🎙️ Send **voice requests** and get them decoded into text.
+-   🖼️ Two answer blocks:
+    1. **Decoded voice request** (transcribed text).
+    2. **AI GPT answer** with **audio playback**.
+-   ⚡ Powered by:
+    -   **Zustand** for state management
+    -   **Zod** for data validation
+    -   [full-form-control](https://www.npmjs.com/package/full-form-control) for form validation  
+        ([GitHub Repo](https://github.com/VolcharaMastering/full-form-control))
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### 1. Development Mode
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Production Build
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm run build
+npm start
+```
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## ✅ Tech Stack
+
+-   **React + Vite + TypeScript** – frontend framework
+-   **Zustand** – state management
+-   **Zod** – schema validation
+-   **full-form-control** – custom form validation library
+
+---
+
+## 📂 Project Structure
+
+```
+/frontend
+ ├── src/
+ │   ├── components/   # UI components
+ │   ├── store/        # Zustand state
+ │   ├── forms/        # Full-form-control validation
+ │   └── ...
+ ├── package.json
+ └── vite.config.ts
 ```
