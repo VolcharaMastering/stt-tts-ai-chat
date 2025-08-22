@@ -11,6 +11,9 @@ interface chatsState {
     answerResult: string;
     transcribedText: string | null;
     aiAnswer: Blob | null;
+    loadingTranscribe: boolean;
+    loadingGpt: boolean;
+
     getAllChats: () => Promise<void>;
     sendRequest: (
         userName: string,
@@ -18,4 +21,7 @@ interface chatsState {
         audioRequest?: Blob,
         voiceAnswer?: boolean
     ) => Promise<void>;
+
+    connectSocket: () => void;
+    disconnectSocket: () => void;
 }

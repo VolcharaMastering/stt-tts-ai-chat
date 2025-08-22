@@ -5,6 +5,7 @@ import fs from 'fs';
 
 import { transcribeAudio } from '../services/sttService';
 import { getGptResponse } from '../services/aiService';
+import { io } from '../../app';
 
 interface MulterRequest extends Request {
   file?: Express.Multer.File;
@@ -34,17 +35,23 @@ export const sendSpeachToText = async (req: MulterRequest, res: Response, next: 
       return notFound('Failed to save transcripted message');
     }
     //send response with transcripted text
-    res.json({ text: transcriptText });
+    res.json({ textMessage: transcriptText });
     // 3. GPT response
     const aiAnswer = await getGptResponse(transcriptText, transcriptedMessage._id, voiceAnswer);
 
+    // 4. Send audio response via socket.io
     if (voiceAnswer && aiAnswer.audioPath) {
       const audioBuffer = await fs.promises.readFile(aiAnswer.audioPath);
-      return res.set('Content-Type', 'audio/mpeg').set('Content-Disposition', 'attachment; filename="answer.mp3"').send(audioBuffer);
+      io.to(userName).emit('gptAnswer', {
+        text: aiAnswer.text,
+        audio: audioBuffer.toString('base64'), // Send audio as base64 string
+      });
+    } else {
+      // 4. Send text response via socket.io
+      io.to(userName).emit('gptAnswer', {
+        text: aiAnswer.text,
+      });
     }
-
-    // 4. JSON
-    return res.json({ text: transcriptText, aiText: aiAnswer.text });
   } catch (err: unknown) {
     if (err instanceof Error) {
       serverError(`Error processing: ${err.message}`);

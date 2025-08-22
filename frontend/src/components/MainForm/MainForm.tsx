@@ -23,7 +23,6 @@ const MainForm: React.FC = () => {
 
             const response = await sendRequest(userName, userRequest || "", audioRequest, false);
             console.log("Request sent successfully:", response);
-            unsubscribeFromStore();
         } catch (error: Error | any) {
             console.error(error);
         }
@@ -67,6 +66,9 @@ const MainForm: React.FC = () => {
                 disabled={!isValid}
             >
                 Ask me!
+            </button>
+            <button className="main-form__button" onClick={unsubscribeFromStore}>
+                Reset form
             </button>
         </form>
     );

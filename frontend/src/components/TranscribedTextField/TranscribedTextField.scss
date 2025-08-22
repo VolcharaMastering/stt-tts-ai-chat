@@ -1,29 +1,29 @@
 @import "../../styles/block-mixins.scss";
 
-.all-chats {
+.transcribe-block {
     @include flex_column();
     width: 50%;
     height: 100%;
     border-right: 2px solid $separator-color;
 
-    .all-chats__button {
+    .transcribe-block__button {
         @include button();
     }
-    .all-chats__list {
+    .transcribe-block__list {
         @include flex_column($justify: flex-start);
         width: 100%;
         padding: 20px 20px;
         flex: 1;
-        .all-chats__item {
+        .transcribe-block__item {
             width: 100%;
             @include flex_row($justify: space-between);
             @include text();
-            .all-chats__alias {
+            .transcribe-block__alias {
                 @include text();
             }
         }
     }
-    .all-chats__empty {
+    .transcribe-block__empty {
         @include labels-text();
     }
 }
