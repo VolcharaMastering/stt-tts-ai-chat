@@ -9,7 +9,7 @@ const upload = multer({ dest: 'uploads/' });
 
 const router = express.Router();
 
-router.post('/messages/text', validateMessage, addMessageByUser);
+router.post('/text', validateMessage, addMessageByUser);
 router.post('/stt', upload.single('audio'), sendSpeachToText);
 // router.post("/tts", sendTextToSpeach);
 // router.get("/messages", getMessages);

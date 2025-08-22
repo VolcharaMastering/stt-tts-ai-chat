@@ -1,0 +1,12 @@
+.audio-recorder {
+    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.audio-recorder__preview {
+    width: 100%;
+}
+.audio-recorder__audio {
+    width: 350px;
+}

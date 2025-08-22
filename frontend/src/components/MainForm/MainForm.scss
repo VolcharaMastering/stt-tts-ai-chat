@@ -2,20 +2,16 @@
 
 .main-form {
     @include flex_column();
-    width: 350px;
-    .main-form__inputs {
+    width: 510px;
+    .main-form__request-input {
+        position: relative;
         flex: 1;
-        @include flex_column($justify: flex-start);
+        @include flex_row($justify: space-between, $align: flex-end);
         min-width: 230px;
-        max-width: 350px;
+        max-width: 100%;
         width: 100%;
     }
 
-    .main-form__calendar {
-        @include input-text();
-        width: 100%;
-        border-radius: 10px;
-    }
     .main-form__buttons {
         width: 100%;
         @include flex_row($justify: space-around);

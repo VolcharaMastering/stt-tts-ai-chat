@@ -6,9 +6,7 @@ import MainForm from "./components/MainForm/MainForm";
 function App() {
     return (
         <main className="app">
-            <h1 className="main-title">
-                TTS/STT chat<sup>TM</sup>
-            </h1>
+            <h1 className="main-title">TTS/STT chat</h1>
             <MainForm />
             <section className="main-logs">
                 <TranscribedTextField />

@@ -32,7 +32,7 @@
     }
     .input-element__error-message {
         position: absolute;
-        left: 5px;
+        left: 10%;
         bottom: -30px;
         @include flex_row($gap: 2px, $align: flex-start, $justify: flex-start);
         height: 25px;
